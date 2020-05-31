@@ -17,9 +17,19 @@ public class ResourceMain {
         return Integer.parseInt(lastLine);
     }
 
-    public static void writeValue(final Integer value) throws IOException {
+    public static void writeValue(final Integer value, final String idProcess, final Integer i) throws IOException {
         BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(NAME_FILE, true));
+        BufferedWriter bufferedWriterHistory = new BufferedWriter(new FileWriter("historico-acessos.txt", true));
+
         bufferedWriter.write("\n".concat(String.valueOf(value)));
+        bufferedWriterHistory.write(
+                "\n"
+                .concat(String.valueOf(i+1))
+                .concat(" - id processo ")
+                .concat(String.valueOf(idProcess))
+                .concat(" - ")
+                .concat(String.valueOf(value)));
         bufferedWriter.close();
+        bufferedWriterHistory.close();
     }
 }
